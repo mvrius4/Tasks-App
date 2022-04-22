@@ -1,0 +1,81 @@
+@import 'Input.css';
+@import 'Todos.css';
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#root {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    text-align: center;
+}
+
+body {
+    background: rgb(30, 25, 30);
+    height: 100vh;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    display: grid;
+    place-items: center;
+}
+.components {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 2rem;
+    transform: translateY(-3.75rem);
+}
+@media (max-width: 600px) {
+    .components {
+        width: 90%;
+    }
+}
+h1 {
+    font-size: clamp(1.25rem, 3vw, 5rem);
+    color: rgb(240, 240, 240);
+}
+.quote {
+    font-size: clamp(1.5rem, 3.25vw, 6rem);
+    color: rgb(255, 0, 55); 
+}
+.btn {
+    outline: none;
+    border: 0;
+    border-radius: .3rem;
+    color: rgb(255, 255, 255);
+}
+.text-container {
+    width: 100%;
+    height: 40vh;
+    background-image: linear-gradient(to bottom, rgba(26, 26, 26, 0.9), rgba(185, 60, 70, 0.5)), url('../img/bg.jpg');
+    background-repeat: no-repeat;
+    background-position: 80% 80%;
+    background-size: cover;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+}
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-align: center;
+    margin-top: 1rem;
+    height: 10vh;
+    width: 100%;
+    color:rgba(240, 240, 240, 0.75);
+    font-weight: 700;
+}
+a {
+    text-decoration: none;
+    color: rgba(240, 240, 240, 0.75);
+}
+a:hover { color: rgb(255, 0, 55); }
