@@ -1,24 +1,20 @@
-import React from 'react'
+import React from 'react';
+import TodosFooter from './TodosFooter';
+import Todo from './Todo';
 
-function Todos({ todos, setTodos }) {
-
-  function handleTodoDelete(id) {
-    setTodos(todos.filter(t => t.id !== id));
-  }
-
+function Todos ({ todos }) {
+  const tasks = todos.length;
   return (
     <div className="todo">
-      <div className="todo-header">
-        <h2>Task Name</h2>
-        <h2>Actions</h2>
+      <div className="todo-main">
+        <div className="todo-header">
+          <h2>Task Name</h2>
+          <h2>Actions</h2>
+        </div>
+        <Todo todos={todos}></Todo>
       </div>
-      <div className="todo-container">
-        {todos.map(todo => (
-          <div className="todo-content">
-            <p key={todo.id}><span className="mark">-</span> {todo.todo}</p>
-            <button onClick={() => handleTodoDelete(todo.id)} class="btn btn-danger">Delete</button>
-          </div>
-        ))}
+      <div className="todo-footer">
+        <TodosFooter tasks={tasks}></TodosFooter>
       </div>
     </div>
   )

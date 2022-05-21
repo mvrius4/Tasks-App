@@ -49,8 +49,23 @@ h1 {
 .btn {
     outline: none;
     border: 0;
+    color: rgb(240, 240, 240);
     border-radius: .3rem;
-    color: rgb(255, 255, 255);
+    font-size: .75rem;
+}
+.btn-danger {
+    background: rgb(255, 35, 80);
+    align-self: flex-start;
+}
+.btn-danger:hover {
+    background: rgb(215, 0, 50);
+}
+.btn-succes {
+    background: rgb(26, 185, 98);
+    align-self: flex-start;
+}
+.btn-succes:hover {
+    background: rgb(0, 150, 67);
 }
 .text-container {
     width: 100%;
@@ -62,17 +77,6 @@ h1 {
     display: grid;
     place-items: center;
     padding: 2rem;
-}
-footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    text-align: center;
-    margin-top: 1rem;
-    height: 10vh;
-    width: 100%;
-    color:rgba(240, 240, 240, 0.75);
-    font-weight: 700;
 }
 a {
     text-decoration: none;
