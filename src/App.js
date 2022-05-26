@@ -105,12 +105,12 @@ const sampleTodo = [
   {
     id: uuidv4(),
     todo: "The possiblity to complete a task.",
-    completed: true
+    completed: false
   },
   {
     id: uuidv4(),
     todo: "The possiblity to see the number of tasks in the footer of the container, and to clear all the completed ones.",
-    completed: true
+    completed: false
   }
 ]
 
