@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Input from './components/Input';
 import Todos from './components/Todos';
 import { v4 as uuidv4 } from 'uuid';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './css/App.css';
 
 export const TodoContext = React.createContext();
@@ -14,7 +16,12 @@ function App() {
     handleTodoComplete,
     handleTodoCompletedDelete
   };
-
+  const add = () => toast.success("You've successfully added a new task!");
+  const complete = () => toast.success("You've successfully completed a task!");
+  const deleteTask = () => toast.info("You've deleted a task!");
+  const deleteAll = () => toast.info("You've deleted all the tasks!");
+  const delCompleted = () => toast.info("You've deleted the completed tasks!")
+  const existing = () => toast.danger("This task already exist!")
   
   useEffect(() => {
     const todosJSON = localStorage.getItem("todo");
@@ -31,27 +38,36 @@ function App() {
 
   function handleTodoAdd(e, todo) {
     e.preventDefault();
-    if(todo === "" || todos.find(t => t.todo === todo)) return;
+    if(todo === "" || todos.find(t => t.todo === todo)) { 
+      existing(); 
+      return;
+    }
     let newTodo = {
         id: uuidv4(),
         todo: todo,
         completed: false
     }
     setTodos([...todos, newTodo]);
+    add();
   }
 
   function handleTodoDelete(id) {
     setTodos(todos.filter(t => t.id !== id));
+    deleteTask();
   }
 
   function handleTodoDeleteAll() {
     setTodos([]);
+    deleteAll();
   }
 
   function handleTodoComplete(id) {
     let todosArray = [...todos]
     todosArray.forEach(todo => {
-      if(todo.id === id) return todo.completed = true;
+      if(todo.id === id && todo.completed === false) {
+        complete(); 
+        return todo.completed = true;
+      }
       return todo;
     });
     setTodos(todosArray);
@@ -59,6 +75,7 @@ function App() {
 
   function handleTodoCompletedDelete() {
     setTodos(todos.filter(todo => todo.completed !== true));
+    delCompleted();
   }
 
   return (
@@ -70,6 +87,16 @@ function App() {
         <Input />
         <Todos todos={todos}/>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={2500}
+        theme="dark"
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        draggable
+      />
     </TodoContext.Provider>
   );
 }
