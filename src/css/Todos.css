@@ -17,10 +17,24 @@
 }
 .todo-footer {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding: .75rem;
     align-items: center;
     gap: 1rem;
     text-align: center;
+}
+.todo-footer .buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+    align-items: center;
+}
+@media ( max-width: 768px ) {
+    .todo-footer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
 .todo-content {
     width: 100%;
