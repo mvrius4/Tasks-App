@@ -20,8 +20,9 @@ function App() {
   const complete = () => toast.success("You've successfully completed a task!");
   const deleteTask = () => toast.info("You've deleted a task!");
   const deleteAll = () => toast.info("You've deleted all the tasks!");
-  const delCompleted = () => toast.info("You've deleted the completed tasks!")
-  const existing = () => toast.danger("This task already exist!")
+  const delCompleted = () => toast.info("You've deleted the completed tasks!");
+  const existing = () => toast.warning("This task already exist!");
+  const nothing = () => toast.warning("There are no tasks to be deleted!");
   
   useEffect(() => {
     const todosJSON = localStorage.getItem("todo");
@@ -38,9 +39,8 @@ function App() {
 
   function handleTodoAdd(e, todo) {
     e.preventDefault();
-    if(todo === "" || todos.find(t => t.todo === todo)) { 
-      existing(); 
-      return;
+    if(todo === "" || todos.find(t => t.todo === todo)) {
+      return existing();
     }
     let newTodo = {
         id: uuidv4(),
@@ -57,6 +57,7 @@ function App() {
   }
 
   function handleTodoDeleteAll() {
+    if(todos.length === 0) return nothing();
     setTodos([]);
     deleteAll();
   }
@@ -74,6 +75,8 @@ function App() {
   }
 
   function handleTodoCompletedDelete() {
+    let completedTodos = todos.filter(todo => todo.completed !== true);
+    if(completedTodos.length === todos.length) return nothing();
     setTodos(todos.filter(todo => todo.completed !== true));
     delCompleted();
   }
@@ -105,13 +108,13 @@ const sampleTodo = [
   {
     id: uuidv4(),
     todo: "The possiblity to complete a task.",
-    completed: true
+    completed: false
   },
   {
     id: uuidv4(),
     todo: "The possiblity to see the number of tasks in the footer of the container, and to clear all the completed ones.",
-    completed: true
+    completed: false
   }
-]
+];
 
 export default App;
